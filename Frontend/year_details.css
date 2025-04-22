@@ -1,0 +1,104 @@
+/* Reset some basic styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f4f7f8;
+    color: #333;
+    padding: 20px;
+  }
+  
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  
+  h1 {
+    font-size: 28px;
+    color: #1e88e5;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  ul li {
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    background: #e3f2fd;
+    border-left: 5px solid #1e88e5;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+  }
+  
+  ul li:hover {
+    background-color: #bbdefb;
+  }
+  
+  ul li a {
+    text-decoration: none;
+    color: #0d47a1;
+    font-weight: 500;
+  }
+  
+  ul li a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Empty state message */
+  .no-pdfs {
+    font-style: italic;
+    color: #777;
+    text-align: center;
+    padding: 40px 0;
+  }
+  
+  /* Responsive */
+  @media (max-width: 600px) {
+    .container {
+      padding: 20px;
+    }
+  
+    h1 {
+      font-size: 22px;
+    }
+  
+    ul li {
+      font-size: 14px;
+    }
+  }
+
+  #pdfList {
+    padding: 10px;
+    list-style: none;
+  }
+  
+  #pdfList li {
+    background: #f4f4f4;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-left: 4px solid #007bff;
+    font-family: sans-serif;
+  }
+  
+  #pdfList li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  #pdfList li a:hover {
+    color: #007bff;
+  }
+  

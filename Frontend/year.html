@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Collection Items</title>
+  <link rel="stylesheet" href="year.css" />
+</head>
+<body>
+
+  <div>
+    <ul id="pdfList" class="list-group mt-4"></ul>
+    <form id="uploadForm" style="display: none;">
+      <input type="file" id="pdf" class="form-control mb-2" required />
+      <input type="text" id="year" class="form-control mb-2" placeholder="e.g., 2022-23" required />
+      <input type="hidden" id="school" name="school" value="" />
+      <button class="btn btn-primary" type="submit">Upload</button>
+    </form>
+  </div>
+
+  <div class="container">
+    <h1>PYQs</h1>
+    <div class="table-container">
+      <p>Papers (Sorted by Year in Descending order):</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Year</th>
+            <th>Title</th>
+            <th>Author(s)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Filled via script.js -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    // Function to get query param from URL
+    function getSchoolFromURL() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get("school") || "";
+    }
+  
+    document.addEventListener("DOMContentLoaded", () => {
+      // Set school value into the hidden input
+      const schoolInput = document.getElementById("school");
+      schoolInput.value = getSchoolFromURL();
+    });
+  </script>  
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>View PDFs</title>
+  <link rel="stylesheet" href="year_details.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>Previous Year Papers</h2>
+    <ul id="pdfList" class="list-group"></ul>
+  </div>
+  <!-- <div class="container">
+    <h1>Previous Year Papers</h1>
+    <ul class="pdf-list">
+      JavaScript will populate list items here
+    </ul>
+    <p class="no-pdfs" style="display: none;">No PDFs found for this year.</p>
+  </div> -->
+
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const year = new URLSearchParams(window.location.search).get("year");
+      const listContainer = document.getElementById("pdfList");
+  
+      if (!year) {
+        listContainer.innerHTML = "<li>Year not specified.</li>";
+        return;
+      }
+  
+      fetch(`http://localhost:5000/api/files/${year}`)
+        .then(res => res.json())
+        .then(data => {
+          if (!data.length) {
+            listContainer.innerHTML = "<li class='no-pdfs'>No PDFs found for this year.</li>";
+            return;
+          }
+  
+          // Clear old content
+          listContainer.innerHTML = "";
+  
+          data.forEach(pdf => {
+            const li = document.createElement("li");
+            li.className = "list-group-item";
+            li.innerHTML = `<a href="${pdf.url}" target="_blank">${pdf.name}</a>`;
+            // li.innerHTML = `${pdf.name} 
+            // <a href="${pdf.url}" download>
+            //     <button class="btn btn-sm btn-success ml-2">Download</button>
+            // </a>`;
+
+            listContainer.appendChild(li);
+          });
+        })
+        .catch(err => {
+          console.error(err);
+          listContainer.innerHTML = "<li class='no-pdfs'>Error loading PDFs.</li>";
+        });
+    });
+  </script>
+  
+</body>
+</html>

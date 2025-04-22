@@ -1,0 +1,189 @@
+:root {
+  --primary-color: #6352e5;
+  --primary-color-dark: #4f3fd1;
+  --primary-gradient: linear-gradient(135deg, #6352e5, #885fe7);
+  --bg-color: #f9fafb;
+  --card-bg: #ffffff;
+  --text-primary: #1f2937;
+  --text-secondary: #4b5563;
+  --border-radius: 12px;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --transition-slow: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 30px;  
+  border-radius: var(--border-radius);
+  background-color: var(--card-bg);
+  box-shadow: var(--shadow-md);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--primary-color);
+  position: relative;
+  padding-bottom: 8px;
+}
+
+.subtitle {
+  text-align: center;
+  color: var(--text-secondary);
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+}
+
+h1::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: var(--primary-gradient);
+  border-radius: 2px;
+  transition: var(--transition);
+}
+
+.schools-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  align-items: start;
+}
+
+.school {
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  padding: 25px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  height: 180px;
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(247,247,247,0.9) 100%);
+  cursor: pointer;
+}
+
+.school::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--primary-gradient);
+  transition: var(--transition-slow);
+}
+
+.school:hover::before {
+  width: 8px;
+}
+
+.school h2 {
+  color: var(--text-primary);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  transition: var(--transition);
+  position: relative;
+  z-index: 1;
+}
+
+.school p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-top: 8px;
+  position: relative;
+  z-index: 1;
+  background: rgba(255,255,255,0.7);
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.school-icon {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  font-size: 2.5rem;
+  opacity: 0.5;
+  color: var(--primary-color);
+  transition: var(--transition);
+}
+
+.school:hover .school-icon {
+  opacity: 0.2;
+  transform: scale(1.1);
+}
+
+.school:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(99, 82, 229, 0.2);
+}
+
+/* Specific icons for different schools */
+.school[onclick*="allied-health"] .school-icon::before { content: "🏥"; }
+.school[onclick*="architecture"] .school-icon::before { content: "🏛️"; }
+.school[onclick*="business"] .school-icon::before { content: "💼"; }
+.school[onclick*="dental"] .school-icon::before { content: "🦷"; }
+.school[onclick*="engineering"] .school-icon::before { content: "⚙️"; }
+.school[onclick*="humanities"] .school-icon::before { content: "📚"; }
+.school[onclick*="law"] .school-icon::before { content: "⚖️"; }
+.school[onclick*="medical"] .school-icon::before { content: "🩺"; }
+.school[onclick*="nursing"] .school-icon::before { content: "💉"; }
+.school[onclick*="pharmacy"] .school-icon::before { content: "💊"; }
+
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+    margin: 20px;
+  }
+
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  .schools-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .school {
+    height: 160px;
+  }
+}
+
+@media (min-width: 992px) {
+  .schools-wrapper {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

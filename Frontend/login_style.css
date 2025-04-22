@@ -1,0 +1,39 @@
+body {
+    background: linear-gradient(to right, #f8f9fa, #e9ecef);
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .logo-container .tagline {
+    font-size: 1.3rem;
+    color: #343a40;
+    font-weight: 500;
+  }
+  
+  .login-container {
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  .login-icon {
+    width: 80px;
+    height: 80px;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 50%;
+  }
+  
+  .sign-in-btn {
+    background: linear-gradient(45deg, #007bff, #00c6ff);
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 8px;
+    transition: 0.3s;
+    box-shadow: 0 0 15px rgba(0, 123, 255, 0.6);
+  }
+  
+  .sign-in-btn:hover {
+    background: linear-gradient(45deg, #00c6ff, #007bff);
+    box-shadow: 0 0 20px rgba(0, 123, 255, 0.8);
+  }
+  

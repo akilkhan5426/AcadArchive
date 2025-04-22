@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Upload - Student Repo</title>
+</head>
+<body>
+    <h1>Upload Question Paper (Admins Only)</h1>
+    <p id="welcome-message"></p>
+    
+    <!-- <form id="uploadForm">
+        <input type="file" id="file" required>
+        <button type="submit">Upload PDF</button>
+    </form> -->
+
+    <form id="uploadForm">
+        <input type="file" id="pdf" class="form-control mb-2" required />
+        <input type="text" id="year" class="form-control mb-2" placeholder="e.g., 2022-23" required />
+        <button class="btn btn-primary" type="submit">Upload</button>
+    </form>
+      
+
+    <script>
+        // Check if user is logged in
+        const user = JSON.parse(localStorage.getItem("user"));
+        if (!user) {
+            alert("Access denied! Only admins can upload files.");
+            window.location.href = "login.html";
+        } else {
+            document.getElementById("welcome-message").innerText = `Welcome, ${user.name}!`;
+        }
+
+        // Handle file upload
+        document.getElementById("uploadForm").addEventListener("submit", async function (e) {
+            e.preventDefault();
+
+            const fileInput = document.getElementById("file");
+            if (fileInput.files.length === 0) {
+                alert("Please select a PDF file.");
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append("file", fileInput.files[0]);
+
+            const response = await fetch("http://localhost:5000/api/upload", {
+                method: "POST",
+                headers: { "x-auth-token": localStorage.getItem("token") },
+                body: formData
+            });
+
+            const data = await response.json();
+            if (response.ok) {
+                alert("File uploaded successfully!");
+            } else {
+                alert(data.msg);
+            }
+        });
+    </script>
+</body>
+</html>
+
+<!-- 
+<form action="/upload" method="POST" enctype="multipart/form-data">
+    <label for="school">Select School:</label>
+    <select name="school" id="school">
+      <option value="SchoolA">School A</option>
+      <option value="SchoolB">School B</option>
+      <!-- Add more schools -->
+    <!-- </select>
+  
+    <label for="subject">Subject:</label>
+    <input type="text" name="subject" required>
+  
+    <label for="year">Year:</label>
+    <input type="number" name="year" required>
+  
+    <label for="pdf">Upload PDF:</label>
+    <input type="file" name="pdf" accept="application/pdf" required>
+  
+    <button type="submit">Upload</button>
+  </form>
+   --> -->
